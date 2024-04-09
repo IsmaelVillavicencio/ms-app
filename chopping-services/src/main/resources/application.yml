@@ -1,0 +1,54 @@
+logging:
+    level:
+        org:
+            springframework:
+                web: ERROR #DEBUG
+            hibernate: ERROR
+            SQL: DEBUG
+            type:
+                descriptor:
+                    sql:
+                        BasicBinder: TRACE
+        root: warn
+    pattern:
+        console: '%d{yyyy-MM-dd HH:mm:ss} %clr(${LOG_LEVEL_PATTERN:-%5p}) [%t] %c{2} - %msg%n'
+    file:
+        max-history: 7
+        max-size: 10MB
+        path: logs
+        pattern: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+        total-size-cap: 1GB
+        type: size-and-time-based
+
+server:
+    port: 8082
+
+spring:
+    application:
+        name: chopping-services
+    datasource:
+        password: ''
+        url: jdbc:mysql://localhost:3306/ms-shopping
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                format-sql: true
+                show-sql: true
+                jdbc:
+                    lob:
+                        non-contextual-creation: true
+                    time-zone: UTC
+                enable-lazy-load-no-trans: true
+        show-sql: true
+        open-in-view: false
+    main:
+        banner-mode: 'off'
+    output:
+        ansi:
+            enabled: always
+    sql:
+        init:
+            mode: always
